@@ -1,0 +1,777 @@
+<title>WSG Drop 01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,400;125,600;125,700;125,800&family=DM+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap">
+
+<style>
+:root{
+  color-scheme: light;
+  --paper:#ffffff;
+  --ink:#0a0a0a;
+  --sand:#c9b49a;
+  --grey:#6e6a62;
+  --rule:#e6e3dc;
+  --stage:#efede8;
+
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+
+  --gut: clamp(18px, 4vw, 56px);
+  --maxw: 1280px;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+::selection{background:var(--ink);color:var(--paper)}
+
+a{color:inherit}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gut)}
+
+.mono{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--grey);
+}
+
+.rule{border:0;border-top:1px solid var(--rule);margin:0}
+
+/* ---------- top rail ---------- */
+.rail{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.86);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--rule);
+}
+.rail-in{
+  max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);
+  height:56px;display:flex;align-items:center;gap:14px;
+}
+.rail-mark{width:20px;height:20px;color:var(--ink);flex:none}
+.rail-name{
+  font-family:var(--display);font-weight:800;font-size:12px;
+  letter-spacing:.26em;text-transform:uppercase;
+}
+.rail-spacer{flex:1}
+.rail-meta{display:none}
+@media(min-width:720px){ .rail-meta{display:block} }
+
+/* ---------- hero ---------- */
+.hero{
+  padding-top:clamp(48px,9vw,110px);
+  padding-bottom:clamp(36px,6vw,72px);
+}
+.hero-eyebrow{
+  display:flex;flex-wrap:wrap;gap:10px 22px;align-items:baseline;
+  margin-bottom:clamp(20px,3vw,34px);
+}
+.hero-title{
+  font-family:var(--display);
+  font-weight:800;
+  text-transform:uppercase;
+  font-size:clamp(58px,13.4vw,188px);
+  line-height:.82;
+  letter-spacing:-.015em;
+  margin:0;
+  text-wrap:balance;
+}
+.hero-line{display:block;overflow:hidden}
+.hero-line > span{display:block;transform:translateY(105%)}
+.reveal .hero-line > span{
+  animation:rise .95s cubic-bezier(.16,.9,.24,1) forwards;
+}
+.hero-line:nth-child(2) > span{animation-delay:.09s}
+.hero-line:nth-child(3) > span{animation-delay:.18s}
+@keyframes rise{to{transform:translateY(0)}}
+
+.hero-foot{
+  margin-top:clamp(26px,4vw,46px);
+  display:grid;gap:22px;
+  grid-template-columns:1fr;
+  align-items:end;
+}
+@media(min-width:860px){
+  .hero-foot{grid-template-columns:minmax(0,1fr) minmax(0,34ch);gap:48px}
+}
+.hero-note{
+  font-size:19px;line-height:1.55;color:var(--ink);margin:0;
+  max-width:34ch;
+}
+.hero-note em{font-style:italic;color:var(--grey)}
+.hero-star{color:var(--sand)}
+
+/* ---------- ticker ---------- */
+.ticker{
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  overflow:hidden;
+  padding:13px 0;
+  white-space:nowrap;
+}
+.ticker-track{
+  display:inline-flex;gap:0;
+  animation:slide 34s linear infinite;
+  will-change:transform;
+}
+.ticker-track span{
+  font-family:var(--display);font-weight:800;font-size:13px;
+  letter-spacing:.24em;text-transform:uppercase;
+  padding-right:34px;
+}
+.ticker-track span i{font-style:normal;color:var(--sand);padding-left:34px}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- section shell ---------- */
+.sec{padding-block:clamp(56px,9vw,120px)}
+.sec-head{
+  display:grid;gap:14px;grid-template-columns:1fr;
+  margin-bottom:clamp(28px,4vw,52px);
+}
+@media(min-width:860px){
+  .sec-head{grid-template-columns:16ch minmax(0,1fr);gap:48px;align-items:start}
+}
+.sec-title{
+  font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-size:clamp(30px,5.2vw,62px);line-height:.92;letter-spacing:-.01em;
+  margin:0;text-wrap:balance;
+}
+
+/* ---------- manifesto ---------- */
+.mani{
+  display:grid;gap:clamp(34px,5vw,64px);
+  grid-template-columns:1fr;align-items:center;
+}
+@media(min-width:900px){
+  .mani{grid-template-columns:minmax(0,1fr) minmax(0,380px)}
+}
+.mani-quote{
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(24px,3.6vw,44px);line-height:1.02;letter-spacing:-.01em;
+  margin:0 0 26px;text-wrap:balance;
+}
+.mani-quote span{color:var(--sand)}
+.mani-fr{
+  font-family:var(--body);font-style:italic;font-weight:300;
+  font-size:17px;color:var(--grey);margin:0 0 30px;
+}
+.mani p.txt{margin:0 0 18px;max-width:62ch}
+.mani p.txt:last-child{margin-bottom:0}
+.emblem{width:100%;max-width:380px;justify-self:center;color:var(--ink)}
+
+/* ---------- drop viewer ---------- */
+.viewer{
+  display:grid;gap:clamp(28px,4vw,56px);
+  grid-template-columns:1fr;
+}
+@media(min-width:960px){
+  .viewer{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:start}
+}
+
+.stage{
+  position:relative;
+  background:var(--stage);
+  border:1px solid var(--rule);
+  aspect-ratio:1/1;
+  display:grid;place-items:center;
+  padding:clamp(16px,3vw,42px);
+  perspective:1600px;
+  transition:background .5s ease;
+}
+.stage[data-tee="01"]{
+  --tee:#161616;--tee-lo:#050505;--tee-hi:#2a2a2a;--seam:#333;--print:#ffffff;
+  background:#e9e7e2;
+}
+.stage[data-tee="02"]{
+  --tee:#ffffff;--tee-lo:#e6e3dd;--tee-hi:#ffffff;--seam:#dfdcd5;--print:#0a0a0a;
+  background:#eceae4;
+}
+.stage[data-tee="03"]{
+  --tee:#c9b49a;--tee-lo:#ab9276;--tee-hi:#d9c8b3;--seam:#b09a7e;--print:#171310;
+  background:#f0ece5;
+}
+.stage-tag{
+  position:absolute;top:14px;left:16px;
+  font-family:var(--display);font-weight:600;font-size:10px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--grey);
+}
+.flipper{
+  position:relative;width:100%;max-width:520px;
+  transform-style:preserve-3d;
+  transition:transform .8s cubic-bezier(.66,0,.2,1);
+}
+.stage[data-face="back"] .flipper{transform:rotateY(180deg)}
+.face{backface-visibility:hidden}
+.face svg{display:block;width:100%;height:auto}
+.face--back{position:absolute;inset:0;transform:rotateY(180deg)}
+
+.print{display:none}
+.stage[data-tee="01"] [data-print="01"],
+.stage[data-tee="02"] [data-print="02"],
+.stage[data-tee="03"] [data-print="03"]{display:block}
+
+/* controls */
+.ctrl{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.chip{
+  font-family:var(--display);font-weight:700;font-size:11px;
+  letter-spacing:.16em;text-transform:uppercase;
+  background:transparent;color:var(--grey);
+  border:1px solid var(--rule);
+  padding:11px 16px;cursor:pointer;
+  transition:color .2s,border-color .2s,background .2s;
+}
+.chip:hover{color:var(--ink);border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip:focus-visible,.swatch:focus-visible{outline:2px solid var(--sand);outline-offset:3px}
+
+.swatches{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
+.swatch{
+  display:flex;align-items:center;gap:11px;
+  background:none;border:0;padding:6px 2px;cursor:pointer;
+  font-family:var(--display);font-weight:600;font-size:11px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--grey);
+  border-bottom:2px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.swatch i{
+  width:22px;height:22px;border-radius:50%;display:block;
+  border:1px solid rgba(10,10,10,.16);
+}
+.swatch:hover{color:var(--ink)}
+.swatch[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+
+/* info panel */
+.info-num{
+  font-family:var(--display);font-weight:800;font-size:11px;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--sand);
+}
+.info-name{
+  font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-size:clamp(28px,4.4vw,52px);line-height:.94;letter-spacing:-.012em;
+  margin:8px 0 0;
+}
+.info-mood{
+  font-family:var(--body);font-style:italic;font-weight:300;
+  color:var(--grey);font-size:18px;margin:12px 0 0;
+}
+.info-desc{margin:22px 0 0;max-width:44ch}
+.specs{
+  margin:30px 0 0;padding:0;list-style:none;
+  border-top:1px solid var(--rule);
+}
+.specs li{
+  display:grid;grid-template-columns:11ch minmax(0,1fr);
+  gap:14px;padding:13px 0;border-bottom:1px solid var(--rule);
+  align-items:baseline;
+}
+.spec-k{
+  font-family:var(--display);font-weight:600;font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--grey);
+}
+.spec-v{font-family:var(--body);font-size:16px;line-height:1.45}
+
+.range{
+  display:flex;gap:8px;margin-top:26px;flex-wrap:wrap;
+}
+.range button{
+  flex:1 1 0;min-width:96px;
+  background:none;border:1px solid var(--rule);cursor:pointer;
+  padding:14px 12px;text-align:left;
+  transition:border-color .2s,background .2s;
+}
+.range button:hover{border-color:var(--ink)}
+.range button[aria-pressed="true"]{border-color:var(--ink);background:#faf9f7}
+.range b{
+  display:block;font-family:var(--display);font-weight:800;font-size:11px;
+  letter-spacing:.16em;text-transform:uppercase;
+}
+.range span{
+  display:block;margin-top:5px;font-family:var(--body);font-size:14px;
+  color:var(--grey);font-style:italic;
+}
+
+/* ---------- detail cards ---------- */
+.cards{
+  display:grid;gap:1px;background:var(--rule);
+  border:1px solid var(--rule);
+  grid-template-columns:1fr;
+}
+@media(min-width:820px){.cards{grid-template-columns:repeat(3,1fr)}}
+.card{
+  background:var(--paper);
+  padding:clamp(24px,3vw,38px);
+  display:flex;flex-direction:column;gap:14px;
+}
+.card-k{
+  font-family:var(--display);font-weight:600;font-size:10px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--sand);
+}
+.card-h{
+  font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-size:20px;line-height:1.05;letter-spacing:-.005em;margin:0;
+}
+.card p{margin:0;color:var(--grey);font-size:16px}
+
+/* ---------- footer ---------- */
+.foot{border-top:1px solid var(--rule);padding-block:clamp(44px,6vw,80px)}
+.foot-mark{
+  font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-size:clamp(44px,15vw,210px);line-height:.8;letter-spacing:-.02em;
+  margin:0 0 clamp(24px,4vw,46px);
+}
+.foot-grid{
+  display:grid;gap:20px;grid-template-columns:1fr;
+  align-items:baseline;
+}
+@media(min-width:760px){.foot-grid{grid-template-columns:repeat(3,1fr)}}
+.foot-line{font-size:15px;color:var(--grey);margin:0}
+
+/* ---------- scroll reveal ---------- */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,.9,.24,1)}
+.rv.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .hero-line > span{transform:none}
+  .rv{opacity:1;transform:none}
+}
+</style>
+
+<!-- ============ TOP RAIL ============ -->
+<header class="rail">
+  <div class="rail-in">
+    <svg class="rail-mark" viewBox="0 0 100 100" aria-hidden="true">
+      <g transform="rotate(-12 50 50)" fill="currentColor" stroke="currentColor" stroke-width="5" stroke-linejoin="round">
+        <path d="M50 4 L73.9 17.8 L61 41 L50 23 L26.6 36.5 L26.6 63.5 L10.2 73 L10.2 27 Z"/>
+        <path d="M50 96 L26.1 82.2 L39 59 L50 77 L73.4 63.5 L73.4 36.5 L89.8 27 L89.8 73 Z"/>
+      </g>
+    </svg>
+    <span class="rail-name">World&nbsp;Street&nbsp;Gang</span>
+    <span class="rail-spacer"></span>
+    <span class="mono rail-meta">Drop 01 · Édition limitée</span>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero wrap">
+  <div class="hero-eyebrow">
+    <span class="mono">Drop 01</span>
+    <span class="mono">3 t-shirts · 3 énergies · 1 mouvement</span>
+  </div>
+
+  <h1 class="hero-title" id="heroTitle">
+    <span class="hero-line"><span>More</span></span>
+    <span class="hero-line"><span>Than a</span></span>
+    <span class="hero-line"><span>Gang</span></span>
+  </h1>
+
+  <div class="hero-foot">
+    <p class="hero-note">
+      Trois pièces, une seule coupe, un seul signe. <em>Le vêtement est simple exprès — c'est ce que tu en fais qui compte.</em>
+    </p>
+    <p class="mono" style="margin:0">
+      <span class="hero-star">★</span>&nbsp; Coton premium 280&nbsp;gsm · Coupe fitted&nbsp;/&nbsp;slightly boxy · Séries courtes
+    </p>
+  </div>
+</section>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="ticker"></div>
+</div>
+
+<!-- ============ MANIFESTO ============ -->
+<section class="sec wrap rv">
+  <div class="sec-head">
+    <span class="mono">Le signe</span>
+    <h2 class="sec-title">Plus qu'un cercle</h2>
+  </div>
+
+  <div class="mani">
+    <div>
+      <p class="mani-quote">More than a circle.<br>It's a brotherhood.<br>A mindset. <span>A movement.</span></p>
+      <p class="mani-fr">Plus qu'un cercle. Une fraternité. Un état d'esprit. Un mouvement.</p>
+      <p class="txt">World Street Gang est né dans la rue et regarde vers l'art. Le cercle n'est pas un logo décoratif&nbsp;: c'est un signe de reconnaissance entre gens qui créent — qui s'habillent comme ils pensent et n'attendent la permission de personne.</p>
+      <p class="txt">L'emblème se porte petit sur le cœur, ou grand dans le dos. Discret quand tu veux l'être, impossible à rater quand tu ne l'es pas.</p>
+    </div>
+    <svg class="emblem" viewBox="0 0 320 320" role="img" aria-label="Emblème World Street Gang : cercle avec le monogramme WSG">
+      <defs>
+        <path id="arcTop" d="M42 160 A118 118 0 0 1 278 160" fill="none"/>
+        <path id="arcBot" d="M50 160 A110 110 0 0 0 270 160" fill="none"/>
+      </defs>
+      <circle cx="160" cy="160" r="141" fill="none" stroke="currentColor" stroke-width="2.5"/>
+      <circle cx="160" cy="160" r="132" fill="none" stroke="currentColor" stroke-width="1"/>
+      <text font-family="Archivo, sans-serif" font-weight="800" font-size="24" letter-spacing="3.6" fill="currentColor">
+        <textPath href="#arcTop" startOffset="50%" text-anchor="middle">WORLD STREET GANG</textPath>
+      </text>
+      <text font-family="Archivo, sans-serif" font-weight="700" font-size="14" letter-spacing="3.2" fill="currentColor">
+        <textPath href="#arcBot" startOffset="50%" text-anchor="middle">★ MORE THAN A GANG ★</textPath>
+      </text>
+      <g transform="translate(160 160) scale(1.32) translate(-50 -50)">
+        <g transform="rotate(-12 50 50)" fill="currentColor" stroke="currentColor" stroke-width="5" stroke-linejoin="round">
+          <path d="M50 4 L73.9 17.8 L61 41 L50 23 L26.6 36.5 L26.6 63.5 L10.2 73 L10.2 27 Z"/>
+          <path d="M50 96 L26.1 82.2 L39 59 L50 77 L73.4 63.5 L73.4 36.5 L89.8 27 L89.8 73 Z"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ============ DROP VIEWER ============ -->
+<section class="sec wrap rv" id="drop">
+  <div class="sec-head">
+    <span class="mono">Le drop</span>
+    <h2 class="sec-title">Trois pièces,<br>une seule coupe</h2>
+  </div>
+
+  <div class="viewer">
+
+    <!-- ---- stage ---- -->
+    <div>
+      <div class="stage" id="stage" data-tee="01" data-face="front">
+        <span class="stage-tag" id="stageTag">Recto</span>
+        <div class="flipper">
+
+          <!-- FRONT -->
+          <div class="face face--front">
+            <svg viewBox="0 0 400 420" role="img" aria-label="T-shirt vu de face">
+              <defs>
+                <linearGradient id="shF" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#000" stop-opacity=".16"/>
+                  <stop offset=".2" stop-color="#000" stop-opacity="0"/>
+                  <stop offset=".74" stop-color="#000" stop-opacity="0"/>
+                  <stop offset="1" stop-color="#000" stop-opacity=".11"/>
+                </linearGradient>
+                <linearGradient id="hiF" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset=".18" stop-color="#fff" stop-opacity="0"/>
+                  <stop offset=".42" stop-color="#fff" stop-opacity=".085"/>
+                  <stop offset=".6" stop-color="#fff" stop-opacity=".05"/>
+                  <stop offset=".82" stop-color="#fff" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <ellipse cx="200" cy="374" rx="128" ry="13" fill="#0a0a0a" opacity=".07"/>
+              <path d="M148 46 Q200 84 252 46 L292 56 L366 100 L332 176 L296 156 L296 352 Q296 360 288 360 L112 360 Q104 360 104 352 L104 156 L68 176 L34 100 L108 56 Z"
+                    fill="var(--tee)" stroke="var(--seam)" stroke-width="1.4" stroke-linejoin="round"/>
+              <path d="M148 46 Q200 84 252 46 L292 56 L366 100 L332 176 L296 156 L296 352 Q296 360 288 360 L112 360 Q104 360 104 352 L104 156 L68 176 L34 100 L108 56 Z" fill="url(#shF)"/>
+              <path d="M148 46 Q200 84 252 46 L292 56 L366 100 L332 176 L296 156 L296 352 Q296 360 288 360 L112 360 Q104 360 104 352 L104 156 L68 176 L34 100 L108 56 Z" fill="url(#hiF)"/>
+              <path d="M144 44 Q200 90 256 44" fill="none" stroke="var(--seam)" stroke-width="7" stroke-linecap="round"/>
+              <path d="M108 56 L104 156 M292 56 L296 156" fill="none" stroke="var(--seam)" stroke-width="1.2" opacity=".8"/>
+              <path d="M104 342 L296 342" fill="none" stroke="var(--seam)" stroke-width="1.2" opacity=".6"/>
+
+              <!-- nape wordmark, all tees -->
+              <text x="200" y="104" text-anchor="middle" fill="var(--print)"
+                    font-family="Archivo, sans-serif" font-weight="800" font-size="9" letter-spacing="1.2" opacity=".85">WSG</text>
+
+              <!-- TEE 01 : chest statement -->
+              <g class="print" data-print="01" fill="var(--print)" font-family="Archivo, sans-serif" font-weight="800">
+                <text x="234" y="140" font-size="15" letter-spacing=".6">MORE</text>
+                <text x="234" y="157" font-size="15" letter-spacing=".6">THAN</text>
+                <text x="234" y="174" font-size="15" letter-spacing=".6">A</text>
+                <text x="234" y="191" font-size="15" letter-spacing=".6">GANG</text>
+                <text x="234" y="212" font-size="15">★</text>
+              </g>
+
+              <!-- TEE 02 : small chest logo -->
+              <g class="print" data-print="02" fill="var(--print)">
+                <text x="248" y="146" font-family="Archivo, sans-serif" font-weight="800" font-size="23" letter-spacing="1.2">WSG</text>
+              </g>
+
+              <!-- TEE 03 : front stays clean -->
+              <g class="print" data-print="03"></g>
+            </svg>
+          </div>
+
+          <!-- BACK -->
+          <div class="face face--back">
+            <svg viewBox="0 0 400 420" role="img" aria-label="T-shirt vu de dos">
+              <defs>
+                <linearGradient id="shB" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#000" stop-opacity=".16"/>
+                  <stop offset=".2" stop-color="#000" stop-opacity="0"/>
+                  <stop offset=".74" stop-color="#000" stop-opacity="0"/>
+                  <stop offset="1" stop-color="#000" stop-opacity=".11"/>
+                </linearGradient>
+                <linearGradient id="hiB" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset=".18" stop-color="#fff" stop-opacity="0"/>
+                  <stop offset=".42" stop-color="#fff" stop-opacity=".085"/>
+                  <stop offset=".6" stop-color="#fff" stop-opacity=".05"/>
+                  <stop offset=".82" stop-color="#fff" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <ellipse cx="200" cy="374" rx="128" ry="13" fill="#0a0a0a" opacity=".07"/>
+              <path d="M148 46 Q200 68 252 46 L292 56 L366 100 L332 176 L296 156 L296 352 Q296 360 288 360 L112 360 Q104 360 104 352 L104 156 L68 176 L34 100 L108 56 Z"
+                    fill="var(--tee)" stroke="var(--seam)" stroke-width="1.4" stroke-linejoin="round"/>
+              <path d="M148 46 Q200 68 252 46 L292 56 L366 100 L332 176 L296 156 L296 352 Q296 360 288 360 L112 360 Q104 360 104 352 L104 156 L68 176 L34 100 L108 56 Z" fill="url(#shB)"/>
+              <path d="M148 46 Q200 68 252 46 L292 56 L366 100 L332 176 L296 156 L296 352 Q296 360 288 360 L112 360 Q104 360 104 352 L104 156 L68 176 L34 100 L108 56 Z" fill="url(#hiB)"/>
+              <path d="M145 44 Q200 74 255 44" fill="none" stroke="var(--seam)" stroke-width="7" stroke-linecap="round"/>
+              <path d="M108 56 L104 156 M292 56 L296 156" fill="none" stroke="var(--seam)" stroke-width="1.2" opacity=".8"/>
+              <path d="M104 342 L296 342" fill="none" stroke="var(--seam)" stroke-width="1.2" opacity=".6"/>
+
+              <!-- nape emblem, tees 01 & 02 -->
+              <g class="print" data-print="01">
+                <g transform="translate(200 96)">
+                  <circle r="24" fill="none" stroke="var(--print)" stroke-width="2.2"/>
+                  <circle r="20.5" fill="none" stroke="var(--print)" stroke-width=".8"/>
+                  <g transform="scale(.26) translate(-50 -50)">
+                    <g transform="rotate(-12 50 50)" fill="var(--print)" stroke="var(--print)" stroke-width="5" stroke-linejoin="round">
+                      <path d="M50 4 L73.9 17.8 L61 41 L50 23 L26.6 36.5 L26.6 63.5 L10.2 73 L10.2 27 Z"/>
+                      <path d="M50 96 L26.1 82.2 L39 59 L50 77 L73.4 63.5 L73.4 36.5 L89.8 27 L89.8 73 Z"/>
+                    </g>
+                  </g>
+                </g>
+              </g>
+              <g class="print" data-print="02">
+                <g transform="translate(200 96)">
+                  <circle r="24" fill="none" stroke="var(--print)" stroke-width="2.2"/>
+                  <circle r="20.5" fill="none" stroke="var(--print)" stroke-width=".8"/>
+                  <g transform="scale(.26) translate(-50 -50)">
+                    <g transform="rotate(-12 50 50)" fill="var(--print)" stroke="var(--print)" stroke-width="5" stroke-linejoin="round">
+                      <path d="M50 4 L73.9 17.8 L61 41 L50 23 L26.6 36.5 L26.6 63.5 L10.2 73 L10.2 27 Z"/>
+                      <path d="M50 96 L26.1 82.2 L39 59 L50 77 L73.4 63.5 L73.4 36.5 L89.8 27 L89.8 73 Z"/>
+                    </g>
+                  </g>
+                </g>
+              </g>
+
+              <!-- TEE 03 : big statement back print -->
+              <g class="print" data-print="03" fill="var(--print)" text-anchor="middle" font-family="Archivo, sans-serif">
+                <g transform="translate(200 88)">
+                  <circle r="17" fill="none" stroke="var(--print)" stroke-width="1.8"/>
+                  <g transform="scale(.19) translate(-50 -50)">
+                    <g transform="rotate(-12 50 50)" fill="var(--print)" stroke="var(--print)" stroke-width="5" stroke-linejoin="round">
+                      <path d="M50 4 L73.9 17.8 L61 41 L50 23 L26.6 36.5 L26.6 63.5 L10.2 73 L10.2 27 Z"/>
+                      <path d="M50 96 L26.1 82.2 L39 59 L50 77 L73.4 63.5 L73.4 36.5 L89.8 27 L89.8 73 Z"/>
+                    </g>
+                  </g>
+                </g>
+                <text x="200" y="176" font-weight="800" font-size="39" letter-spacing="-1">MORE</text>
+                <text x="200" y="212" font-weight="800" font-size="39" letter-spacing="-1">THAN</text>
+                <text x="200" y="248" font-weight="800" font-size="39" letter-spacing="-1">A GANG</text>
+                <text x="200" y="272" font-weight="800" font-size="13" letter-spacing="1">WORLD STREET GANG</text>
+                <text x="200" y="292" font-weight="600" font-size="8" letter-spacing=".5">MORE THAN A CIRCLE.</text>
+                <text x="200" y="303" font-weight="600" font-size="8" letter-spacing=".5">IT'S A BROTHERHOOD.</text>
+                <text x="200" y="314" font-weight="600" font-size="8" letter-spacing=".5">A MINDSET. A MOVEMENT.</text>
+                <text x="200" y="336" font-weight="800" font-size="15">★</text>
+              </g>
+            </svg>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="ctrl" role="group" aria-label="Face affichée">
+        <button class="chip" type="button" data-face="front" aria-pressed="true">Recto</button>
+        <button class="chip" type="button" data-face="back" aria-pressed="false">Verso</button>
+      </div>
+
+      <div class="swatches" role="group" aria-label="Choix du coloris">
+        <button class="swatch" type="button" data-tee="01" aria-pressed="true"><i style="background:#161616"></i>Noir</button>
+        <button class="swatch" type="button" data-tee="02" aria-pressed="false"><i style="background:#ffffff"></i>Blanc</button>
+        <button class="swatch" type="button" data-tee="03" aria-pressed="false"><i style="background:#c9b49a"></i>Sand</button>
+      </div>
+    </div>
+
+    <!-- ---- info ---- -->
+    <div>
+      <p class="info-num" id="iNum">Tee 01</p>
+      <h3 class="info-name" id="iName">More Than<br>a Gang</h3>
+      <p class="info-mood" id="iMood">Statement.</p>
+      <p class="info-desc" id="iDesc">Le slogan imprimé sur le cœur, en petit. Celui qui sait, sait.</p>
+
+      <ul class="specs" id="iSpecs"></ul>
+
+      <div class="range" role="group" aria-label="Les trois pièces du drop">
+        <button type="button" data-tee="01" aria-pressed="true"><b>Tee 01</b><span>Statement</span></button>
+        <button type="button" data-tee="02" aria-pressed="false"><b>Tee 02</b><span>Essentiel</span></button>
+        <button type="button" data-tee="03" aria-pressed="false"><b>Tee 03</b><span>Limité</span></button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ============ DETAILS ============ -->
+<section class="sec wrap rv">
+  <div class="sec-head">
+    <span class="mono">La fabrication</span>
+    <h2 class="sec-title">Ce qui ne se<br>voit pas de loin</h2>
+  </div>
+
+  <div class="cards">
+    <article class="card">
+      <span class="card-k">Matière</span>
+      <h3 class="card-h">Coton premium 280 gsm</h3>
+      <p>Un grammage lourd. Le tissu tombe droit, garde sa forme et ne devient pas transparent à la lumière.</p>
+    </article>
+    <article class="card">
+      <span class="card-k">Coupe</span>
+      <h3 class="card-h">Fitted / slightly boxy</h3>
+      <p>Épaules nettes, corps légèrement carré. Ni moulant, ni flottant — la même coupe sur les trois pièces.</p>
+    </article>
+    <article class="card">
+      <span class="card-k">Disponibilité</span>
+      <h3 class="card-h">Quantités limitées</h3>
+      <p>Drop 01 est produit en série courte. Trois coloris, trois intentions, et rien qui se réimprime en boucle.</p>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="wrap">
+    <p class="foot-mark">WSG</p>
+    <div class="foot-grid">
+      <p class="foot-line"><strong style="font-family:var(--display);font-weight:800;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)">World Street Gang</strong></p>
+      <p class="foot-line">More than a gang. It's a brotherhood.<br>A mindset. A movement.</p>
+      <p class="foot-line"><span style="color:var(--sand)">★</span>&nbsp; Drop 01 — Édition limitée</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* hero reveal */
+  requestAnimationFrame(function(){
+    document.getElementById("heroTitle").classList.add("reveal");
+  });
+
+  /* ticker */
+  var t = document.getElementById("ticker");
+  if (t) {
+    var unit = '<span>More than a gang<i>★</i>World Street Gang<i>★</i>Drop 01<i>★</i>3 énergies, 1 mouvement<i>★</i></span>';
+    t.innerHTML = new Array(9).join(unit) + new Array(9).join(unit);
+  }
+
+  /* data */
+  var TEES = {
+    "01": {
+      num:"Tee 01",
+      name:"More Than<br>a Gang",
+      mood:"Statement.",
+      desc:"Le slogan imprimé sur le cœur, en petit format. Une pièce qui parle avant toi, sans hausser la voix.",
+      specs:[
+        ["Coloris","Noir"],
+        ["Coupe","Fitted / slightly boxy"],
+        ["Matière","Coton premium 280 gsm"],
+        ["Recto","Impression poitrine « More Than a Gang » + étoile"],
+        ["Verso","Emblème circulaire à la nuque"],
+        ["Esprit","Plus qu'un groupe. Un mouvement."]
+      ]
+    },
+    "02": {
+      num:"Tee 02",
+      name:"Minimal<br>Essential",
+      mood:"Essentiel.",
+      desc:"Le monogramme, rien d'autre. Celle qu'on remet trois fois par semaine sans jamais y penser.",
+      specs:[
+        ["Coloris","Blanc"],
+        ["Coupe","Fitted / slightly boxy"],
+        ["Matière","Coton premium 280 gsm"],
+        ["Recto","Petit logo WSG poitrine"],
+        ["Verso","Emblème circulaire à la nuque"],
+        ["Esprit","L'essentiel. Rien de plus."]
+      ]
+    },
+    "03": {
+      num:"Tee 03",
+      name:"Statement<br>Edition",
+      mood:"Limité.",
+      desc:"Devant, presque rien. Derrière, tout le manifeste en grand. La pièce qu'on voit s'éloigner dans la rue.",
+      specs:[
+        ["Coloris","Sand"],
+        ["Coupe","Fitted / slightly boxy"],
+        ["Matière","Coton premium 280 gsm"],
+        ["Recto","Logo nuque uniquement"],
+        ["Verso","Grand print manifeste + étoile"],
+        ["Esprit","Édition limitée. Impact maximal."]
+      ]
+    }
+  };
+
+  var stage   = document.getElementById("stage");
+  var stageTag= document.getElementById("stageTag");
+  var iNum    = document.getElementById("iNum");
+  var iName   = document.getElementById("iName");
+  var iMood   = document.getElementById("iMood");
+  var iDesc   = document.getElementById("iDesc");
+  var iSpecs  = document.getElementById("iSpecs");
+
+  function press(nodes, attr, value){
+    for (var i=0;i<nodes.length;i++){
+      nodes[i].setAttribute("aria-pressed", nodes[i].getAttribute(attr) === value ? "true" : "false");
+    }
+  }
+
+  function setTee(id){
+    var d = TEES[id];
+    if (!d) return;
+    stage.setAttribute("data-tee", id);
+    iNum.textContent  = d.num;
+    iName.innerHTML   = d.name;
+    iMood.textContent = d.mood;
+    iDesc.textContent = d.desc;
+
+    var html = "";
+    for (var i=0;i<d.specs.length;i++){
+      html += '<li><span class="spec-k">'+d.specs[i][0]+'</span><span class="spec-v">'+d.specs[i][1]+'</span></li>';
+    }
+    iSpecs.innerHTML = html;
+
+    press(document.querySelectorAll(".swatch"), "data-tee", id);
+    press(document.querySelectorAll(".range button"), "data-tee", id);
+  }
+
+  function setFace(face){
+    stage.setAttribute("data-face", face);
+    stageTag.textContent = face === "back" ? "Verso" : "Recto";
+    press(document.querySelectorAll(".chip"), "data-face", face);
+  }
+
+  document.addEventListener("click", function(e){
+    var teeBtn = e.target.closest("[data-tee]");
+    if (teeBtn && teeBtn.tagName === "BUTTON"){ setTee(teeBtn.getAttribute("data-tee")); return; }
+    var faceBtn = e.target.closest(".chip[data-face]");
+    if (faceBtn){ setFace(faceBtn.getAttribute("data-face")); }
+  });
+
+  setTee("01");
+  setFace("front");
+
+  /* scroll reveal */
+  var rvs = document.querySelectorAll(".rv");
+  if ("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, {rootMargin:"0px 0px -12% 0px", threshold:.08});
+    for (var i=0;i<rvs.length;i++) io.observe(rvs[i]);
+  } else {
+    for (var j=0;j<rvs.length;j++) rvs[j].classList.add("in");
+  }
+})();
+</script>
